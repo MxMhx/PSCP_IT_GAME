@@ -1,13 +1,13 @@
 import pygame
 import os
 from object.dice import Dice
-from object.ladder import Ladder
+from object.ladder import LadderSnake
 
 dice = Dice()
-ladder = Ladder()
+laddersnake = LadderSnake()
 
-cat_path = os.path.join('assets', 'nyan.png')
-cat_path_flip = os.path.join('assets', 'nyanflip.png')
+cat_path = 'fern_game/assets/nyan.png'
+cat_path_flip = 'fern_game/assets/nyanflip.png'
 
 class Cat(object):
     def __init__(self):
@@ -55,9 +55,9 @@ class Cat(object):
                         self.randomnum -= 1
                         self.column += 1
             else:
-                ladder.moveup(self.row,self.column)
-                self.row = ladder.row_lad
-                self.column = ladder.column_lad
+                laddersnake.move(self.row,self.column)
+                self.row = laddersnake.row_lad
+                self.column = laddersnake.column_lad
                 self.checkmove = False
                 self.y = 645 - ((self.row - 1) * 70)
                 if self.row % 2 == 0:
