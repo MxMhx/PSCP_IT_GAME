@@ -1,8 +1,8 @@
 import pygame
 import os
 import random
-from dice import Dice
-from cat import Cat
+from object.dice import Dice
+from object.cat import Cat
 
 WIDTH, HEIGHT =  700, 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
