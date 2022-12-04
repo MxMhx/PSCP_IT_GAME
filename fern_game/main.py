@@ -1,7 +1,4 @@
 import pygame
-import os
-import random
-from object.dice import Dice
 from object.cat import Cat
 
 WIDTH, HEIGHT =  700, 700
@@ -14,12 +11,14 @@ FPS = 60
 bg_image = pygame.image.load('fern_game/assets/ladders.png')
 bg_size = pygame.transform.scale(bg_image, (700, 700))
 
-cat = Cat()
+cat = []
+
+cat.append(Cat())
 
 def draw2():
     screen.fill(WHITE)
     screen.blit(bg_size, (0, 0))
-    cat.draw(screen)
+    cat[0].draw(screen)
     pygame.display.update()
 def main():
     clock = pygame.time.Clock()
@@ -29,7 +28,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        cat.move()
+        cat[0].move()
         draw2()
     pygame.quit()
 
