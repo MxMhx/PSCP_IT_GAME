@@ -23,6 +23,7 @@ class Cat(object):
         self.jumpCount = 12
         self.randomnum = 0
         self.checkmove = False
+        self.choose = False
 
     def move(self):
         key = pygame.key.get_pressed()
@@ -54,6 +55,11 @@ class Cat(object):
                         self.jumpCount = 12
                         self.randomnum -= 1
                         self.column += 1
+                if self.randomnum == 0:
+                    if not self.choose:
+                        self.choose = True
+                    else:
+                        self.choose = False
             else:
                 laddersnake.move(self.row,self.column)
                 self.row = laddersnake.row_lad

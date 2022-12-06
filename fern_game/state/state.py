@@ -1,9 +1,9 @@
 import pygame
+from state.game_play import GamePlay
 
 class State:
     def __init__(self):
-        self.game = 0
-        self.state_current = 0
+        self.gameplay = GamePlay()
 
-    def setstate():
+    def state_manage():
         pass
