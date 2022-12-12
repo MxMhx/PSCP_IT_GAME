@@ -11,11 +11,11 @@ class Dice(object):
         self.numplay = 0
 
         for num in range(1,10):
-            self.dice_rolling_image = pygame.transform.scale(pygame.image.load('main/assets/dice_roll' + str(num) + '.png'), (128, 128))
+            self.dice_rolling_image = pygame.transform.scale(pygame.image.load('Interface/assets/dice_roll' + str(num) + '.png'), (128, 128))
             self.dice_rolling_images.append(self.dice_rolling_image)
 
         for num in range(1,7):
-            self.dice_image = pygame.image.load('main/assets/' + str(num) + '_dots.png')
+            self.dice_image = pygame.image.load('Interface/assets/' + str(num) + '_dots.png')
             self.dice_images.append(self.dice_image)
 
     def dicing(self,screen,cat,amount):

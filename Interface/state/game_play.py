@@ -2,6 +2,8 @@ import pygame
 
 from object.move import move
 from object.cat import Cat
+from object.randcard import Card
+
 
 class GamePlay():
     def __init__(self):
@@ -17,6 +19,7 @@ class GamePlay():
         self.amount = 3
 
         self.haswon = False
+        self.card = Card()
 
     def main_GamePlay(self,screen):
         for i in range(4):

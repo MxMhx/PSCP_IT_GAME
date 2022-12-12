@@ -9,7 +9,7 @@ class LadderSnake(object):
             'ch4' : [1,4,3,5],
             'ch13' : [2,3,5,6],
             'ch33' : [4,3,5,9],
-            'ch42' : [5,2,7,3],
+            'ch42' : [5,2,7,8],
             'ch50' : [5,10,7,9],
             'ch62' : [7,2,9,1],
             'ch74' : [8,4,10,2],
@@ -25,8 +25,8 @@ class LadderSnake(object):
         }
         self.row_lad = 1
         self.column_lad = 1
-    
-    def move(self,row,column):
+
+    def move(self,row,column,screen):
         self.row_lad = row
         self.column_lad = column
         for x in self.chanel:

@@ -1,5 +1,5 @@
 import pygame, main
-from buttton import Button
+from object.buttton import Button
 from state.game_play import GamePlay
 from object.move import dice
 
@@ -14,7 +14,7 @@ BG_End = pygame.image.load("Art/Interface.png")
 
 LOGO = pygame.image.load("Art/Logo.png")
 
-gameplay = GamePlay()   
+gameplay = GamePlay()
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("Interface/assets/Valorant Font.ttf", size)
@@ -182,7 +182,6 @@ def game_play():
         if gameplay.haswon:
             end_game(dice.numplay)
         pygame.display.update()
-        
 
 def end_game(whowin):
     while True:
