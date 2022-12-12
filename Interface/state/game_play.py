@@ -2,7 +2,6 @@ import pygame
 
 from object.move import move
 from object.cat import Cat
-from object.randcard import Card
 
 
 class GamePlay():
@@ -16,10 +15,9 @@ class GamePlay():
         self.cat.append(Cat(3))
         self.cat.append(Cat(4))
 
-        self.amount = 3
+        self.amount = 1
 
         self.haswon = False
-        self.card = Card()
 
     def main_GamePlay(self,screen):
         for i in range(4):

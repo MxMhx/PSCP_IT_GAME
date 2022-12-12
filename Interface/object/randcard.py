@@ -35,10 +35,62 @@ class Card(object):
 
         self.row_card = 1
         self.column_card = 1
+        self.rolling_card = False
+
+        self.randomcard = 0
 
     def show(self,row,column,screen):
         self.row_card = row
         self.column_card = column
         for x in self.chanelcard:
             if self.chanelcard[x][0] == row and self.chanelcard[x][1] == column:
-                print("random card")
+                self.rolling_card = True
+                self.rolling()
+                self.randomcard = random.randint(1,6)
+                pygame.time.delay(1000)
+                print("random card = " + str(self.randomcard))
+                if self.randomcard == 1:
+                    self.stated_card()
+                pygame.time.delay(500)
+                self.randomcard = 0
+
+    def rolling(self):
+        pass
+
+    def stated_card(self):
+        self.row_card = 1
+        self.column_card = 1
+
+    def back3(self):
+        self.column_card -= 3
+
+    def back5(self):
+        for i in range(5):
+            self.column_card -= 1
+            if self.column_card <= 0:
+                self.column_card = 10
+                self.row_card -= 1
+
+    def forward3(self):
+        for i in range(3):
+            self.column_card += 1
+            if self.column_card <= 0:
+                self.column_card = 1
+                self.row_card += 1
+
+    def forward5(self):
+        for i in range(5):
+            self.column_card += 1
+            if self.column_card <= 0:
+                self.column_card = 1
+                self.row_card += 1
+
+    def stop(self):
+        pass
+
+    # ohm dod mai yom tum ghan
+    # so alcohol 100% is calling we
+    # let's gooooooooooo
+    # p'ohm pai siam and pai maid cafe with fern mai giu giu 
+    # hur when fern ja dai sleep
+    # oke so pround of ohm nsa
