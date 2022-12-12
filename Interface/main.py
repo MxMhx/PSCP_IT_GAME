@@ -1,5 +1,7 @@
-import pygame, sys
+import pygame, main
 from buttton import Button
+from state.game_play import GamePlay
+from object.move import dice
 
 pygame.init()
 
@@ -12,8 +14,12 @@ BG_End = pygame.image.load("Art/Interface.png")
 
 LOGO = pygame.image.load("Art/Logo.png")
 
+gameplay = GamePlay()   
 
-def play(self):
+def get_font(size): # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("Interface/assets/Valorant Font.ttf", size)
+
+def play():
     while True:
         PLAY_MOUSE_POS = pygame.mouse.get_pos()
         P_BG = pygame.image.load("Art/Many_Player_BG.png")
@@ -56,25 +62,19 @@ def play(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                     main_menu()
                 if PLAY_QUIT.checkForInput(PLAY_MOUSE_POS):
                     quit_check_play()
                 elif player1.checkForInput(PLAY_MOUSE_POS):
-                    self.player = 1
-                    end_game()
+                    game_play()
                 elif player2.checkForInput(PLAY_MOUSE_POS):
-                    self.player = 2
-                    main_menu()
+                    game_play()
                 elif player3.checkForInput(PLAY_MOUSE_POS):
-                    self.player = 3
-                    main_menu()
+                    game_play()
                 elif player4.checkForInput(PLAY_MOUSE_POS):
-                    self.player = 4
-                    main_menu()
-
+                    game_play()
         pygame.display.update()
 
 def quit_check_play():
@@ -103,7 +103,6 @@ def quit_check_play():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if X_BUTTON.checkForInput(QUIT_CHECK_MOUSE_POS):
                     play()
@@ -111,7 +110,6 @@ def quit_check_play():
                     play()
                 if SURE_BUTTON.checkForInput(QUIT_CHECK_MOUSE_POS):
                     pygame.quit()
-                    sys.exit()
 
 def quit_check_menu():
     while True:
@@ -139,7 +137,6 @@ def quit_check_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if X_BUTTON.checkForInput(QUIT_CHECK_MOUSE_POS):
                     main_menu()
@@ -147,7 +144,6 @@ def quit_check_menu():
                     main_menu()
                 if SURE_BUTTON.checkForInput(QUIT_CHECK_MOUSE_POS):
                     pygame.quit()
-                    sys.exit()
 
 def main_menu():
     while True:
@@ -168,7 +164,6 @@ def main_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     play()
@@ -177,31 +172,47 @@ def main_menu():
                     quit_check_menu()
         pygame.display.update()
 
-def end_game():
+def game_play():
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+        SCREEN.fill(((255, 255, 255)))
+        gameplay.main_GamePlay(SCREEN)
+        if gameplay.haswon:
+            end_game(dice.numplay)
+        pygame.display.update()
+        
+
+def end_game(whowin):
     while True:
         SCREEN.blit(BG_End, (0, 0))
 
         END_MOUSE_POS = pygame.mouse.get_pos()
 
-        End_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
-        End_RECT = End_TEXT.get_rect(center=(640, 100))
+        End_TEXT = get_font(50).render("You Win!!!", True, "#b68f40")
+        End_RECT = End_TEXT.get_rect(center=(350, 100))
 
-        QUIT_BUTTON = Button(image=pygame.image.load("Interface/assets/Quit Rect.png"), pos=(640, 550), 
-                            text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("Art/Quit.png"), pos=(580, 550), 
+                            hovering_image=pygame.image.load("Art/Quit_Click.png"))
+
+        RESTART_BUTTON = Button(image=pygame.image.load("Art/Play.png"), pos=(150, 550), 
+                            hovering_image=pygame.image.load("Art/Play_Click.png"))
 
         SCREEN.blit(End_TEXT, End_RECT)
 
-        for button in [QUIT_BUTTON]:
+        for button in [QUIT_BUTTON, RESTART_BUTTON]:
             button.changeColor(END_MOUSE_POS)
             button.update(SCREEN)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if QUIT_BUTTON.checkForInput(END_MOUSE_POS):
                     pygame.quit()
-                    sys.exit()
+                if RESTART_BUTTON.checkForInput(END_MOUSE_POS):
+                    main_menu()
         pygame.display.update()
+        print(whowin+1)
 main_menu()
