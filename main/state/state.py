@@ -1,11 +1,12 @@
 import pygame
-from object.cat import Cat
-
-amount = int(input())
+from state.game_play import GamePlay
 
 class State:
+    MAIN_MENU = 0
+    GAME_PLAY = 1
+    HAS_WON = 2
     def __init__(self):
-        self.currentstate = 0
+        pass
 
     def setstate():
         pass

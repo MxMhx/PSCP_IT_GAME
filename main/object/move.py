@@ -45,4 +45,3 @@ def move(cat,amount,screen):
             dice.dicing(screen,cat,amount)
         for i in range(amount-1,-1,-1):
             cat[i].draw(screen)
-            print(i)
