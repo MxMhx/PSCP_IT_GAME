@@ -38,6 +38,9 @@ class Card(object):
             self.card_spin_image = pygame.transform.scale(pygame.image.load('Art/spincard/spin_' + str(i) + '.png'), (298.5,495))
             self.card_spin_images.append(self.card_spin_image)
 
+        self.bg_image = pygame.image.load('Art/Ladders_Finish.png')
+        self.bg_size = pygame.transform.scale(self.bg_image, (700,700))
+
     def show(self,row,column,screen,numplay,cat,amount):
         self.row_card = row
         self.column_card = column
@@ -47,6 +50,7 @@ class Card(object):
                 self.randomcard = random.randint(1,6)
                 self.rolling(screen,cat,amount)
                 print("random card = " + str(self.randomcard-1))
+                screen.blit(self.bg_size, (0,0))
                 for i in range(amount-1,-1,-1):
                     cat[i].draw(screen)
                 screen.blit(self.card_images[self.randomcard-1], (210,110))
@@ -70,7 +74,10 @@ class Card(object):
     def rolling(self,screen,cat,amount):
         for i in range(18):
             pygame.time.delay(20)
+            screen.blit(self.bg_size, (0,0))
             screen.blit(self.card_spin_images[i], (210,110))
+            for j in range(amount-1,-1,-1):
+                cat[j].draw(screen)
             pygame.display.update()
 
     def stated_card(self):
