@@ -24,24 +24,6 @@ class Dice(object):
             self.isrolling = True
             self.randonnum = random.randint(1,6)
             screen.blit(self.dice_rolling_images[self.dice_image_count], (280, 280))
-        elif key[pygame.K_1] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 1
-        elif key[pygame.K_2] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 2
-        elif key[pygame.K_3] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 3
-        elif key[pygame.K_4] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 4
-        elif key[pygame.K_5] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 5
-        elif key[pygame.K_6] and not self.isrolling:
-            self.isrolling = True
-            self.randonnum = 6
         else:
             if self.isrolling:
                 pygame.time.delay(20)
