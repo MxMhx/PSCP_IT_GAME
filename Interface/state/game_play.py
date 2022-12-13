@@ -5,7 +5,7 @@ from object.cat import Cat
 
 
 class GamePlay():
-    def __init__(self):
+    def __init__(self,amountplayer):
         self.bg_image = pygame.image.load('Art/Ladders_Finish.png')
         self.bg_size = pygame.transform.scale(self.bg_image, (700,700))
 
@@ -15,8 +15,7 @@ class GamePlay():
         self.cat.append(Cat(3))
         self.cat.append(Cat(4))
 
-        self.amount = 1
-
+        self.amount = amountplayer
         self.haswon = False
 
     def main_GamePlay(self,screen):

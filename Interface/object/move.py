@@ -31,18 +31,23 @@ def move(cat,amount,screen):
                     dice.randonnum -= 1
                     cat[dice.numplay].column += 1
             if dice.randonnum == 0:
+                card.show(cat[dice.numplay].row,cat[dice.numplay].column,screen,dice.numplay,cat,amount)
+                cat[dice.numplay].row = card.row_card
+                cat[dice.numplay].column = card.column_card
                 laddersnake.move(cat[dice.numplay].row,cat[dice.numplay].column,screen)
                 cat[dice.numplay].row = laddersnake.row_lad
                 cat[dice.numplay].column = laddersnake.column_lad
-                card.show(cat[dice.numplay].row,cat[dice.numplay].column,screen)
-                cat[dice.numplay].row = card.row_card
-                cat[dice.numplay].column = card.column_card
                 cat[dice.numplay].y = 623 - ((cat[dice.numplay].row - 1) * 70)
                 if cat[dice.numplay].row % 2 == 0:
                     cat[dice.numplay].x = 700 - ((cat[dice.numplay].column) * 70)
                 else:
                     cat[dice.numplay].x = 0 + ((cat[dice.numplay].column - 1) * 70)
                 dice.numplay += 1
+                if dice.numplay > amount - 1:
+                    dice.numplay = 0
+                if dice.numplay == card.player_stop:
+                    dice.numplay += 1
+                    card.player_stop = 5
                 if dice.numplay > amount - 1:
                     dice.numplay = 0
         else:
